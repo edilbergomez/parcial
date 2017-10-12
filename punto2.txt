@@ -1,0 +1,37 @@
+
+-- CREATING TABLES
+
+CREATE TABLE "CATEGORIES" (
+"id" NUMBER NOT NULL ,
+"name" VARCHAR2(255) NULL ,
+"season" VARCHAR2(255) NULL ,
+CONSTRAINT categorie_id PRIMARY KEY (id)
+CONSTRAINT product_id FOREIGN KEY (product_id)
+PRIMARY KEY ("id")
+) 
+
+CREATE TABLE "PRODUCTS" (
+"id" NUMBER NOT NULL ,
+"name" VARCHAR2(255) NULL ,
+"reference" VARCHAR2(255) NULL ,
+"price" DECIMAL(10,3) NULL ,
+"categorie_id" NUMBER NOT NULL,
+CONSTRAINT product_id PRIMARY KEY (id)
+CONSTRAINT answer_id FOREIGN KEY (answer_id)
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "ANSWERS" (
+"id" NUMBER NOT NULL ,
+"number_of_question" VARCHAR2(255) NULL ,
+"answer" VARCHAR2(255) NULL ,
+"product_id" NUMBER NOT NULL,
+CONSTRAINT answer_id PRIMARY KEY (id)
+PRIMARY KEY ("id")
+);
+
+
+- CREATING VALIDATION CHECK CONSTRAINT
+
+ALTER TABLE "CATEGORIES" ADD CONSTRAINT "CK_categorie_season" CHECK ("season" IN ( 'winter', 'summer', 'spring', 'autumn'));
+ALTER TABLE "PRODUCTS" ADD CONSTRAINT "CK_must_price" CHECK ("price">0);
